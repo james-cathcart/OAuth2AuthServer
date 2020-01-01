@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "8a3fdd63-ae94-4bc5-a89e-ca10fd4c8305",
+		"name": "OAuthDemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Initial OAuth token request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36b8be47-c4d3-41c7-92dd-27704294b880",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "thisissecret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "eagleeye",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"contentType": "",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "webclient",
+							"contentType": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "john.carnell",
+							"contentType": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token Request BCrypt Creds",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{bcrypt}$2a$04$zRO.5c6v1m37U.luJ1jSBuAXpjAzBRbFNmSOrFjqGrAo0ookq1MIe",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "eagleeye",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "grant_type",
+						"value": "password",
+						"type": "text"
+					},
+					{
+						"key": "scope",
+						"value": "webclient",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "john.carnell",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "{bcrypt}$2a$04$bKO9ck1XQKApBHFpTLhEnOh7tFhKXKCwK3g9/7QOeknZcNbr4Y9Du",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/auth/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
