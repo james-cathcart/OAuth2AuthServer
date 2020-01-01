@@ -17,14 +17,17 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public OAuth2Config(
             AuthenticationManager authenticationManager,
-            @Qualifier("myUserDetailsService") UserDetailsService userDetailsService
+            @Qualifier("myUserDetailsService") UserDetailsService userDetailsService,
+            PasswordEncoder passwordEncoder
     ) {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         clients
                 .inMemory()
                 .withClient("eagleeye")
-                .secret("{bcrypt}thisissecret")
+                .secret(passwordEncoder.encode("thisissecret"))
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
                 .scopes("webclient", "mobileclient");
     }
