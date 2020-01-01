@@ -82,63 +82,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "Token Request BCrypt Creds",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{bcrypt}$2a$04$zRO.5c6v1m37U.luJ1jSBuAXpjAzBRbFNmSOrFjqGrAo0ookq1MIe",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "eagleeye",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "grant_type",
-						"value": "password",
-						"type": "text"
-					},
-					{
-						"key": "scope",
-						"value": "webclient",
-						"type": "text"
-					},
-					{
-						"key": "username",
-						"value": "john.carnell",
-						"type": "text"
-					},
-					{
-						"key": "password",
-						"value": "{bcrypt}$2a$04$bKO9ck1XQKApBHFpTLhEnOh7tFhKXKCwK3g9/7QOeknZcNbr4Y9Du",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/auth/oauth/token",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"auth",
-						"oauth",
-						"token"
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
