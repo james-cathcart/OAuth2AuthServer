@@ -8,23 +8,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 
 @Configuration
+@EnableAuthorizationServer
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public OAuth2Config(
             AuthenticationManager authenticationManager,
-            @Qualifier("customUserDetailsService") UserDetailsService userDetailsService,
-            PasswordEncoder passwordEncoder) {
+            @Qualifier("myUserDetailsService") UserDetailsService userDetailsService
+    ) {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         clients
                 .inMemory()
                 .withClient("eagleeye")
-                .secret(passwordEncoder.encode("thisissecret"))
+                .secret("thisissecret")
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
                 .scopes("webclient", "mobileclient");
     }

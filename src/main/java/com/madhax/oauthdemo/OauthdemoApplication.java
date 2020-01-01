@@ -17,7 +17,6 @@ import java.util.Map;
 @SpringBootApplication
 @RestController
 @EnableResourceServer
-@EnableAuthorizationServer
 public class OauthdemoApplication {
 
     private final static Logger log = LoggerFactory.getLogger(OauthdemoApplication.class);
