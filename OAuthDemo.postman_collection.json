@@ -68,12 +68,12 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8080/auth/oauth/token",
+					"raw": "http://localhost:8901/auth/oauth/token",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8901",
 					"path": [
 						"auth",
 						"oauth",
@@ -84,14 +84,14 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/auth/user",
+			"name": "Get User Info",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "4699b9a6-f619-44e1-a097-bfdec2e73a7f",
+							"value": "602f54ef-0343-4928-87e3-1b793782cf75",
 							"type": "string"
 						}
 					]
@@ -99,12 +99,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/auth/user",
+					"raw": "http://localhost:8901/auth/user",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8901",
 					"path": [
 						"auth",
 						"user"
