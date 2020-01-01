@@ -32,7 +32,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         clients
                 .inMemory()
                 .withClient("eagleeye")
-                .secret("thisissecret")
+                .secret("{bcrypt}thisissecret")
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
                 .scopes("webclient", "mobileclient");
     }
