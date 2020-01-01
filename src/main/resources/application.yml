@@ -1,0 +1,7 @@
+logging:
+  level:
+    com.madhax: debug
+
+server:
+  servlet:
+    context-path: /auth

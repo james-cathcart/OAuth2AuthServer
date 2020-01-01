@@ -1,9 +1,11 @@
 package com.madhax.oauthdemo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
@@ -13,21 +15,24 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public OAuth2Config(
             AuthenticationManager authenticationManager,
-            UserDetailsService userDetailsService
-    ) {
+            @Qualifier("customUserDetailsService") UserDetailsService userDetailsService,
+            PasswordEncoder passwordEncoder) {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
+        clients
+                .inMemory()
                 .withClient("eagleeye")
-                .secret("thisissectret")
+                .secret(passwordEncoder.encode("thisissecret"))
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
                 .scopes("webclient", "mobileclient");
     }
