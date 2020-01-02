@@ -91,7 +91,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "602f54ef-0343-4928-87e3-1b793782cf75",
+							"value": "c5075707-7305-4118-8306-f02b39ed86e4",
 							"type": "string"
 						}
 					]
@@ -108,6 +108,35 @@
 					"path": [
 						"auth",
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Client Health-Check",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ff3ad5f9-a943-4161-9e9d-9b1b76cbc55e",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/health-check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"health-check"
 					]
 				}
 			},
