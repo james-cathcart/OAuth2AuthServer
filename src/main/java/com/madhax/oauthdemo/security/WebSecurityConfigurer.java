@@ -13,6 +13,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
+    public static final String USER_USERNAME = "john.carnell";
+    public static final String USER_PASSWORD = "password1";
+    public static final String ADMIN_USERNAME = "william.woodward";
+    public static final String ADMIN_PASSWORD = "password2";
+    public static final String USER_ROLE = "USER";
+    public static final String ADMIN_ROLE = "ADMIN";
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -38,16 +44,16 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         auth
                 .inMemoryAuthentication()
                 .passwordEncoder(passwordEncoder)
-                .withUser("john.carnell")
+                .withUser(USER_USERNAME)
                 .password(
-                        passwordEncoder.encode("password1")
+                        passwordEncoder.encode(USER_PASSWORD)
                 )
-                .roles("USER")
+                .roles(USER_ROLE)
                 .and()
-                .withUser("william.woodward")
+                .withUser(ADMIN_USERNAME)
                 .password(
-                        passwordEncoder.encode("password2")
+                        passwordEncoder.encode(ADMIN_PASSWORD)
                 )
-                .roles("USER", "ADMIN");
+                .roles(USER_ROLE, ADMIN_ROLE);
     }
 }

@@ -15,6 +15,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 @EnableAuthorizationServer
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
+    public static final String APP_USERNAME = "eagleeye";
+    public static final String APP_PASSWORD = "thisissecret";
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
     private PasswordEncoder passwordEncoder;
@@ -34,8 +36,8 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients
                 .inMemory()
-                .withClient("eagleeye")
-                .secret(passwordEncoder.encode("thisissecret"))
+                .withClient(APP_USERNAME)
+                .secret(passwordEncoder.encode(APP_PASSWORD))
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
                 .scopes("webclient", "mobileclient");
     }
