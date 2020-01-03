@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
@@ -16,16 +18,18 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import java.util.Arrays;
 
 @Configuration
+@EnableAuthorizationServer
+@EnableResourceServer
 public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
 
-    public static final String APP_USERNAME = "eagleeye";
-    public static final String APP_PASSWORD = "thisissecret";
+    public static final String APP_USERNAME = "defaultApp";
+    public static final String APP_PASSWORD = "defaultAppPassword";
 
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
     private TokenStore tokenStore;
-    private DefaultTokenServices tokenServices;
+    private DefaultTokenServices tokenServices; // TODO: not used?
     private JwtAccessTokenConverter jwtAccessTokenConverter;
     private JWTTokenEnhancer jwtTokenEnhancer;
 

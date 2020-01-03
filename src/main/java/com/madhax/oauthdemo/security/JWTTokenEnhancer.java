@@ -14,6 +14,7 @@ public class JWTTokenEnhancer implements TokenEnhancer {
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 
+        // TODO: figure out why this map is not being added to the token
         Map<String, Object> additionalInfo = new HashMap<>();
 
         additionalInfo.put("exampleData", "Example data");

@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 public class JWTTokenStoreConfig {
 
-    private final String ARBITRARY_SIGNING_KEY = "1234";
+    private final String ARBITRARY_SIGNING_KEY = "345345fsdfsf5345";
 
     @Bean
     public TokenStore tokenStore() {

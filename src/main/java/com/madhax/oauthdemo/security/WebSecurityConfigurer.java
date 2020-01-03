@@ -19,6 +19,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     public static final String ADMIN_PASSWORD = "password2";
     public static final String USER_ROLE = "USER";
     public static final String ADMIN_ROLE = "ADMIN";
+
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
