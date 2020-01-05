@@ -12,6 +12,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
@@ -22,10 +24,13 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     public static final String USER_ROLE = "USER";
     public static final String ADMIN_ROLE = "ADMIN";
 
+    private DataSource dataSource;
+
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public WebSecurityConfigurer(PasswordEncoder passwordEncoder) {
+    public WebSecurityConfigurer(DataSource dataSource, PasswordEncoder passwordEncoder) {
+        this.dataSource = dataSource;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -58,6 +63,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                         passwordEncoder.encode(ADMIN_PASSWORD)
                 )
                 .roles(USER_ROLE, ADMIN_ROLE);
+
     }
 
     @Override
