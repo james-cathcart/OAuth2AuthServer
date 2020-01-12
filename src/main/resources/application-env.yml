@@ -4,6 +4,4 @@ spring:
     username: postgres
     password: devP@ss
   jpa:
-    hibernate:
-      ddl-auto: validate
     show-sql: true

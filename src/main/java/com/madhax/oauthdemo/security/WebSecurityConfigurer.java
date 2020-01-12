@@ -64,6 +64,11 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 )
                 .roles(USER_ROLE, ADMIN_ROLE);
 
+//        auth
+//                .jdbcAuthentication()
+//                .dataSource(dataSource);
+
+
     }
 
     @Override

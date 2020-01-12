@@ -1,5 +1,6 @@
 package com.madhax.oauthdemo.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +16,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
 
 @Configuration
@@ -32,14 +34,17 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
     private DefaultTokenServices tokenServices; // TODO: not used?
     private JwtAccessTokenConverter jwtAccessTokenConverter;
     private JWTTokenEnhancer jwtTokenEnhancer;
+    private DataSource dataSource;
 
+    @Autowired
     public JWTOAuth2Config(
             PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager,
             @Qualifier("myUserDetailsService") UserDetailsService userDetailsService,
             TokenStore tokenStore,
             DefaultTokenServices tokenServices,
             JwtAccessTokenConverter jwtAccessTokenConverter,
-            JWTTokenEnhancer jwtTokenEnhancer
+            JWTTokenEnhancer jwtTokenEnhancer,
+            DataSource dataSource
     ) {
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
@@ -48,6 +53,7 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
         this.tokenServices = tokenServices;
         this.jwtAccessTokenConverter = jwtAccessTokenConverter;
         this.jwtTokenEnhancer = jwtTokenEnhancer;
+        this.dataSource = dataSource;
     }
 
     @Override
@@ -78,5 +84,9 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .secret(passwordEncoder.encode(APP_PASSWORD))
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
                 .scopes("webclient", "mobileclient");
+
+//        clients
+//                .jdbc(this.dataSource)
+//                .
     }
 }

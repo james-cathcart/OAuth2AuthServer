@@ -5,8 +5,11 @@ import com.madhax.oauthdemo.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -43,6 +46,15 @@ public class UserService {
     public void deleteById(Long id) {
         log.debug("Deleting user with id: {}", id);
         this.userRepository.deleteById(id);
+    }
+
+    public static Collection<? extends GrantedAuthority> getAuthoritiesFromUser(User user) {
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+
+
+        return authorities;
     }
 
 }
