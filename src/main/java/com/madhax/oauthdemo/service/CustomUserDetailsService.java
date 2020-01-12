@@ -1,4 +1,4 @@
-package com.madhax.oauthdemo.config;
+package com.madhax.oauthdemo.service;
 
 import com.madhax.oauthdemo.entity.User;
 import com.madhax.oauthdemo.pojo.CustomUserPrincipal;
