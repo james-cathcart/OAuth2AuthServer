@@ -17,8 +17,7 @@ public class User {
     private String email;
     @JsonIgnore
     private String password;
-    private boolean enabled;
-    private boolean tokenExpired;
+    private boolean enabled = true;
 
     @OneToMany
     private Collection<Authority> authorities;
@@ -71,5 +70,13 @@ public class User {
 
     public void setAuthorities(Collection<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

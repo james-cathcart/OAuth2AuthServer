@@ -78,12 +78,15 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+//        clients
+//                .inMemory()
+//                .withClient(APP_USERNAME)
+//                .secret(passwordEncoder.encode(APP_PASSWORD))
+//                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
+//                .scopes("webclient", "mobileclient");
+
         clients
-                .inMemory()
-                .withClient(APP_USERNAME)
-                .secret(passwordEncoder.encode(APP_PASSWORD))
-                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
-                .scopes("webclient", "mobileclient");
+                .jdbc(dataSource);
 
     }
 }

@@ -24,6 +24,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     public static final String USER_ROLE = "USER";
     public static final String ADMIN_ROLE = "ADMIN";
 
+    private final String GET_USER_AUTHORITIES_QUERY = "select email, from auth_user_authorities aua join auth_user on auth_user.id=user_id join authority on authority.id=authorities_id where email = ?";
+
     private DataSource dataSource;
 
     private final PasswordEncoder passwordEncoder;
@@ -49,24 +51,26 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .passwordEncoder(passwordEncoder)
-                .withUser(USER_USERNAME)
-                .password(
-                        passwordEncoder.encode(USER_PASSWORD)
-                )
-                .roles(USER_ROLE)
-                .and()
-                .withUser(ADMIN_USERNAME)
-                .password(
-                        passwordEncoder.encode(ADMIN_PASSWORD)
-                )
-                .roles(USER_ROLE, ADMIN_ROLE);
-
 //        auth
-//                .jdbcAuthentication()
-//                .dataSource(dataSource);
+//                .inMemoryAuthentication()
+//                .passwordEncoder(passwordEncoder)
+//                .withUser(USER_USERNAME)
+//                .password(
+//                        passwordEncoder.encode(USER_PASSWORD)
+//                )
+//                .roles(USER_ROLE)
+//                .and()
+//                .withUser(ADMIN_USERNAME)
+//                .password(
+//                        passwordEncoder.encode(ADMIN_PASSWORD)
+//                )
+//                .roles(USER_ROLE, ADMIN_ROLE);
+
+        auth
+                .jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery("SELECT email, password, enabled FROM auth_user WHERE email = ?")
+                .authoritiesByUsernameQuery("select email, name from auth_user_authorities aua join auth_user on auth_user.id=user_id join authority on authority.id=authorities_id where email = ?");
 
 
     }
