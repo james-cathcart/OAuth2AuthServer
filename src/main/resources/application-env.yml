@@ -1,7 +1,0 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://194.168.1.11:5432/authdb
-    username: postgres
-    password: devP@ss
-  jpa:
-    show-sql: true

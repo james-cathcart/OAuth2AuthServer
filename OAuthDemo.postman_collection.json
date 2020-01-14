@@ -58,14 +58,13 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8901/auth/oauth/token",
+					"raw": "http://localhost:8901/oauth/token",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8901",
 					"path": [
-						"auth",
 						"oauth",
 						"token"
 					]
@@ -81,7 +80,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwMjY5NDEsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiI0OTkyNTQ2My1kYmVkLTQ2MzAtYWY3NS0zZTk1ODQ4YjJhOWEiLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.ulsoiD9ELvWlVQ-ZQypLfOe1m_PMhNorcCspVQmELYI",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwMjkxMzAsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiJiNjliM2I4OC1lMjFiLTQ0ZjktODgwNi1jMzVmMGM3Mzg5NTgiLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.1e1_M4OyGks0kYKyOXdyEP3oudWbUBbCg-Uu2UlxmzI",
 							"type": "string"
 						}
 					]
@@ -89,15 +88,101 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8901/auth/user",
+					"raw": "http://localhost:8901/user",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8901",
 					"path": [
-						"auth",
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwMjk5NTYsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiIxNTJmMjJlYi0wMDdhLTQzYTMtOTVkNy1iNGMyMzg2NzUyN2UiLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.sWZEh-bJMxrR29PVTD5D315tf9h5hN9zTi3NCOU3AWE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8901/read-check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8901",
+					"path": [
+						"read-check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Write Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwMzMxMTEsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiI4NGQ2ZDNiMS04NDEwLTQzMTctOTIzOS02NmQyNDkxYTYwMzciLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.PkOS6Yvkss2MFM1O9qluyfyrXGqAnmcf5UfVsro0CMY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8901/write-check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8901",
+					"path": [
+						"write-check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwMzMxMTEsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiI4NGQ2ZDNiMS04NDEwLTQzMTctOTIzOS02NmQyNDkxYTYwMzciLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.PkOS6Yvkss2MFM1O9qluyfyrXGqAnmcf5UfVsro0CMY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8901/delete-check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8901",
+					"path": [
+						"delete-check"
 					]
 				}
 			},
