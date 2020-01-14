@@ -6,7 +6,141 @@
 	},
 	"item": [
 		{
-			"name": "Initial OAuth token request [ALL AUTHORITIES]",
+			"name": "READ - OAuth Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "defaultAppPassword",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "defaultApp",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "webclient",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "user@fakemail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8901/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8901",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "READ, WRITE - OAuth Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "defaultAppPassword",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "defaultApp",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "webclient",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "clerk@fakemail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8901/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8901",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "READ, WRITE, DELETE - OAuth Token",
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -80,7 +214,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwMjkxMzAsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiJiNjliM2I4OC1lMjFiLTQ0ZjktODgwNi1jMzVmMGM3Mzg5NTgiLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.1e1_M4OyGks0kYKyOXdyEP3oudWbUBbCg-Uu2UlxmzI",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwNzQ3OTksInVzZXJfbmFtZSI6ImNsZXJrQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJXUklURSJdLCJqdGkiOiIzMDVkY2QwOC02OTA5LTQ4YzMtYWFlNS1lYjBmY2QwOThjNjYiLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.XkXev1WExS2ITRKhus2RxcO6utU51qoHQyKmhzl7zrQ",
 							"type": "string"
 						}
 					]
@@ -109,7 +243,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwMjk5NTYsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiIxNTJmMjJlYi0wMDdhLTQzYTMtOTVkNy1iNGMyMzg2NzUyN2UiLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.sWZEh-bJMxrR29PVTD5D315tf9h5hN9zTi3NCOU3AWE",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwNzU4NTIsInVzZXJfbmFtZSI6ImNsZXJrQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJXUklURSJdLCJqdGkiOiIzNWZhZWZhNS1mMzJlLTRkZmItODExZS1lNGM2NDdhMjY2NmYiLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.DkKXwLY_TY7gB3hn_Cst9DM3Ovpk6CA_9g8e45pTZ9A",
 							"type": "string"
 						}
 					]
@@ -138,7 +272,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwMzMxMTEsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiI4NGQ2ZDNiMS04NDEwLTQzMTctOTIzOS02NmQyNDkxYTYwMzciLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.PkOS6Yvkss2MFM1O9qluyfyrXGqAnmcf5UfVsro0CMY",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwNzU5NDEsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiI2NDM5ZDYwOC0xYjAxLTQxMjEtYWRhZS04OGJhZTVhYzA1YjkiLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.4VRr7EYvhYXCsPq1Cfer47Es5-KafV48pO_Pi-LblYg",
 							"type": "string"
 						}
 					]
@@ -167,7 +301,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwMzMxMTEsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiI4NGQ2ZDNiMS04NDEwLTQzMTctOTIzOS02NmQyNDkxYTYwMzciLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.PkOS6Yvkss2MFM1O9qluyfyrXGqAnmcf5UfVsro0CMY",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwNzU5NDEsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiI2NDM5ZDYwOC0xYjAxLTQxMjEtYWRhZS04OGJhZTVhYzA1YjkiLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.4VRr7EYvhYXCsPq1Cfer47Es5-KafV48pO_Pi-LblYg",
 							"type": "string"
 						}
 					]

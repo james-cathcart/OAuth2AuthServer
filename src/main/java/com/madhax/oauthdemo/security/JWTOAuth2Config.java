@@ -8,7 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
@@ -20,7 +19,6 @@ import java.util.Arrays;
 
 @Configuration
 @EnableAuthorizationServer
-@EnableResourceServer
 public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     public static final String APP_USERNAME = "defaultApp";
@@ -84,6 +82,7 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
                 .scopes("webclient", "mobileclient");
 
+        // TODO: add database integration for clients (i.e. protected resource registration)
 //        clients
 //                .jdbc(dataSource);
 

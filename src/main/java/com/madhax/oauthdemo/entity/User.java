@@ -19,7 +19,11 @@ public class User {
     private String password;
     private boolean enabled = true;
 
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_authorities",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "authority_id")
+    )
     private Collection<Authority> authorities;
 
     public User() { }
