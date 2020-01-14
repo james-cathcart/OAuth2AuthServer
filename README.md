@@ -13,12 +13,16 @@ Navigate _docker_ directory and run this command:
 ## Create & Run the Container
 `docker run --name oauth-db -p 5432:5432 -e POSTGRES_PASSWORD=devP@ss -d oauth-postgres`
 
-## Set Active Profile for Run Configuration
+## Run the Project
 Import the project into IntelliJ (or your IDE of choice). Now run the project. 
 
-## Try it out
-Use the Postman collection in the root directory of the project to test token endpoint. Once a token is received, copy the access_token and use it as the Bearer token on the Get User Info Postman request. This is the endpoint that other protected resources can use to validate access tokens.
+## Try it out with the Postman Collection
+Use the Postman collection in the root directory of the project to test the various endpoints. You must first use the post request to obtain an access token. Once a token is received, copy the access_token and use it as the Bearer token on the Get User Info Postman request. This is the endpoint that other protected resources can use to validate access tokens.
 
-There is currently only one user and the entity relationship is incorrect in the database so no additional users and authorities can be added due to the constraints Hibernate has put on the fields. That being said, that user has all authorities and can be used to hit the protected AppController endpoints.
+### Secured Endpoints 
+There are also three endpoints that are secured via the WebSecurityConfigurerAdapter. The Postman Collection has requests for these endpoints. Simply paste the access_token from the Initial OAuth token request into the Bearer token Authorization section of the Postman request.
+
+## Known Issues
+There is currently only one user and the entity relationship in the database is incorrect. A OneToMany relationship was used when a ManyToMany relationship should have been used. This means no additional users and authorities can be added due to the constraints Hibernate has put on the join table. That being said, that user has all authorities and can be used to hit the protected AppController endpoints.
 
 
