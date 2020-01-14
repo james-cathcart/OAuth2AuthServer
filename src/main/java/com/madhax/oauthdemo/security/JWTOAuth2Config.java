@@ -1,7 +1,6 @@
 package com.madhax.oauthdemo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -39,7 +38,7 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Autowired
     public JWTOAuth2Config(
             PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager,
-            @Qualifier("myUserDetailsService") UserDetailsService userDetailsService,
+            UserDetailsService userDetailsService,
             TokenStore tokenStore,
             DefaultTokenServices tokenServices,
             JwtAccessTokenConverter jwtAccessTokenConverter,
@@ -78,15 +77,15 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//        clients
-//                .inMemory()
-//                .withClient(APP_USERNAME)
-//                .secret(passwordEncoder.encode(APP_PASSWORD))
-//                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
-//                .scopes("webclient", "mobileclient");
-
         clients
-                .jdbc(dataSource);
+                .inMemory()
+                .withClient(APP_USERNAME)
+                .secret(passwordEncoder.encode(APP_PASSWORD))
+                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
+                .scopes("webclient", "mobileclient");
+
+//        clients
+//                .jdbc(dataSource);
 
     }
 }

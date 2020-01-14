@@ -6,103 +6,32 @@
 	},
 	"item": [
 		{
-			"name": "Initial OAuth token request [ROLE_USER]",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "36b8be47-c4d3-41c7-92dd-27704294b880",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
+			"name": "Initial OAuth token request [ALL AUTHORITIES]",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "defaultAppPassword",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "defaultApp",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
 					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "thisissecret",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "eagleeye",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "grant_type",
-							"value": "password",
-							"contentType": "",
-							"type": "text"
-						},
-						{
-							"key": "scope",
-							"value": "webclient",
-							"contentType": "",
-							"type": "text"
-						},
-						{
-							"key": "username",
-							"value": "john.carnell",
-							"contentType": "",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "password1",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8901/auth/oauth/token",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8901",
-					"path": [
-						"auth",
-						"oauth",
-						"token"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Initial OAuth token request [ROLE_ADMIN]",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "thisissecret",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "eagleeye",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -118,12 +47,12 @@
 						},
 						{
 							"key": "username",
-							"value": "william.woodward",
+							"value": "admin@fakemail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "password2",
+							"value": "1234password",
 							"type": "text"
 						}
 					]
@@ -152,7 +81,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "bc6e3bbb-aef7-499e-ad60-3baeb0079bf8",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzkwMjY5NDEsInVzZXJfbmFtZSI6ImFkbWluQGZha2VtYWlsLmNvbSIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJERUxFVEUiLCJXUklURSJdLCJqdGkiOiI0OTkyNTQ2My1kYmVkLTQ2MzAtYWY3NS0zZTk1ODQ4YjJhOWEiLCJjbGllbnRfaWQiOiJkZWZhdWx0QXBwIiwic2NvcGUiOlsid2ViY2xpZW50Il19.ulsoiD9ELvWlVQ-ZQypLfOe1m_PMhNorcCspVQmELYI",
 							"type": "string"
 						}
 					]
@@ -169,122 +98,6 @@
 					"path": [
 						"auth",
 						"user"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Client Health-Check",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "bc6e3bbb-aef7-499e-ad60-3baeb0079bf8",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/health-check",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"health-check"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "User Role Endpoint",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "b6af5395-1aec-4c5e-9cd3-3cedd1b795e0",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/user-check",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user-check"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Admin Role Endpoint",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "b6af5395-1aec-4c5e-9cd3-3cedd1b795e0",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/admin-check",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"admin-check"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Anti-Admin Role Endpoint",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "bc6e3bbb-aef7-499e-ad60-3baeb0079bf8",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/admin-check",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"admin-check"
 					]
 				}
 			},
