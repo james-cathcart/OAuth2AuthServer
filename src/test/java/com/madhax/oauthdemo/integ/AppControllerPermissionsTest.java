@@ -12,7 +12,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class AppControllerTest {
+class AppControllerPermissionsTest {
 
     @Autowired
     WebApplicationContext context;

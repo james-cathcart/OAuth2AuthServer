@@ -48,13 +48,4 @@ public class UserService {
         this.userRepository.deleteById(id);
     }
 
-    public static Collection<? extends GrantedAuthority> getAuthoritiesFromUser(User user) {
-
-        List<GrantedAuthority> authorities = new ArrayList<>();
-
-
-
-        return authorities;
-    }
-
 }
