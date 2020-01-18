@@ -82,7 +82,7 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
                 .scopes("webclient", "mobileclient");
 
-        // TODO: add database integration for clients (i.e. protected resource registration)
+//        TODO: add database integration for clients (i.e. protected resource registration)
 //        clients
 //                .jdbc(dataSource);
 

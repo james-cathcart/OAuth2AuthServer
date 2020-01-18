@@ -1,5 +1,6 @@
 package com.madhax.oauthdemo.controller;
 
+import com.madhax.oauthdemo.constants.AuthConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -15,7 +16,7 @@ public class AuthController {
 
     private final Logger log = LoggerFactory.getLogger(AuthController.class);
 
-    @RequestMapping(value = {"/user"}, produces = "application/json")
+    @RequestMapping(value = {AuthConstants.USER_ENDPOINT}, produces = "application/json")
     public Map<String, Object> user(OAuth2Authentication user) {
 
         log.debug("/user endpoint called.");

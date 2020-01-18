@@ -1,4 +1,4 @@
-package com.madhax.oauthdemo.unit;
+package com.madhax.oauthdemo.unit.service;
 
 import com.madhax.oauthdemo.entity.User;
 import com.madhax.oauthdemo.repository.UserRepository;
