@@ -8,10 +8,14 @@ There is a directory called _docker_ in the root of the project. In this directo
 ## Build the Docker Image
 Navigate _docker_ directory and run this command:
 
-`docker build -t oauth-postgres .`
+```
+docker build -t oauth-postgres .
+```
 
 ## Create & Run the Container
-`docker run --name oauth-db -p 5432:5432 -e POSTGRES_PASSWORD=devP@ss -d oauth-postgres`
+```
+docker run --name oauth-db -p 5432:5432 -e POSTGRES_PASSWORD=devP@ss -d oauth-postgres
+```
 
 ## Run the Project
 Import the project into IntelliJ (or your IDE of choice). Now run the project. 
