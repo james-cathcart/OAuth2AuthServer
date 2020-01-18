@@ -14,16 +14,18 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/read-check")
-                .hasAuthority("READ")
+                    .hasAuthority("READ")
                 .antMatchers("/write-check")
-                .hasAuthority("WRITE")
+                    .hasAuthority("WRITE")
                 .antMatchers("/delete-check")
-                .hasAuthority("DELETE")
+                    .hasAuthority("DELETE")
+                .antMatchers("/user")
+                    .permitAll()
                 .antMatchers("/**/*")
-                .denyAll();
+                    .denyAll();
     }
 }

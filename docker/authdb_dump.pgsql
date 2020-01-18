@@ -136,6 +136,7 @@ COPY public.authority (id, name) FROM stdin;
 --
 
 COPY public.oauth_client_details (client_id, access_token_validity, additional_information, authorities, authorized_grant_types, autoapprove, client_secret, refresh_token_validity, resource_ids, scope, web_server_redirect_uri) FROM stdin;
+defaultApp	\N	\N	\N	refresh_token,password,client_credentials	\N	$2a$10$QhpeGxO0mEcu46CsGpUBMewIQB34NYClT6JAHfBs18Tcb3gBjnRHK	\N	\N	webclient,mobileclient	\N
 \.
 
 

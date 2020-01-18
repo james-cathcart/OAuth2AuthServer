@@ -1,7 +1,9 @@
 package com.madhax.oauthdemo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -28,17 +31,16 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
     private TokenStore tokenStore;
-    private DefaultTokenServices tokenServices; // TODO: not used?
     private JwtAccessTokenConverter jwtAccessTokenConverter;
     private JWTTokenEnhancer jwtTokenEnhancer;
     private DataSource dataSource;
 
     @Autowired
     public JWTOAuth2Config(
-            PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager,
+            PasswordEncoder passwordEncoder,
+            AuthenticationManager authenticationManager,
             UserDetailsService userDetailsService,
             TokenStore tokenStore,
-            DefaultTokenServices tokenServices,
             JwtAccessTokenConverter jwtAccessTokenConverter,
             JWTTokenEnhancer jwtTokenEnhancer,
             DataSource dataSource
@@ -47,7 +49,6 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
         this.tokenStore = tokenStore;
-        this.tokenServices = tokenServices;
         this.jwtAccessTokenConverter = jwtAccessTokenConverter;
         this.jwtTokenEnhancer = jwtTokenEnhancer;
         this.dataSource = dataSource;
@@ -68,23 +69,33 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
 
         endpoints
                 .tokenStore(tokenStore)
-                .accessTokenConverter(jwtAccessTokenConverter)
                 .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
+                .userDetailsService(userDetailsService)
+                .tokenServices(
+                        tokenServices(
+                                tokenEnhancerChain,
+                                endpoints.getClientDetailsService()
+                        )
+                );
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients
-                .inMemory()
-                .withClient(APP_USERNAME)
-                .secret(passwordEncoder.encode(APP_PASSWORD))
-                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
-                .scopes("webclient", "mobileclient");
+        clients.jdbc(dataSource);
+    }
 
-//        TODO: add database integration for clients (i.e. protected resource registration)
-//        clients
-//                .jdbc(dataSource);
+    @Bean
+    @Primary
+    public DefaultTokenServices tokenServices(TokenEnhancerChain tokenEnhancerChain, ClientDetailsService clientDetailsService) {
 
+        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+        defaultTokenServices.setReuseRefreshToken(true);
+        defaultTokenServices.setAccessTokenValiditySeconds(300);
+        defaultTokenServices.setRefreshTokenValiditySeconds(600);
+        defaultTokenServices.setTokenStore(tokenStore);
+        defaultTokenServices.setTokenEnhancer(tokenEnhancerChain);
+        defaultTokenServices.setClientDetailsService(clientDetailsService);
+
+        return defaultTokenServices;
     }
 }
