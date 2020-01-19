@@ -27,5 +27,3 @@ Use the Postman collection in the root directory of the project to test the vari
 
 ### Secured Endpoints 
 There are also three endpoints that are secured via the WebSecurityConfigurerAdapter. The Postman Collection has requests for these endpoints as well as requests to generate tokens with different Authorities for testing. Simply paste the access_token from the desired OAuth token request into the Bearer token Authorization section of the Postman request.
-
-

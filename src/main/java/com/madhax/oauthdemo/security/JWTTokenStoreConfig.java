@@ -1,6 +1,7 @@
 package com.madhax.oauthdemo.security;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -16,6 +17,12 @@ public class JWTTokenStoreConfig {
 
     private final String ARBITRARY_SIGNING_KEY = "345345fsdfsf5345";
 
+    @Value("${token.access.timeout}")
+    private Integer accessTokenTimeout;
+
+    @Value("${token.refresh.timeout}")
+    private Integer refreshTokenTimeout;
+
     @Bean
     public TokenStore tokenStore() {
         return new JwtTokenStore(jwtAccessTokenConverter());
@@ -28,8 +35,8 @@ public class JWTTokenStoreConfig {
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setReuseRefreshToken(true);
         defaultTokenServices.setSupportRefreshToken(true);
-        defaultTokenServices.setAccessTokenValiditySeconds(300);
-        defaultTokenServices.setRefreshTokenValiditySeconds(1800);
+        defaultTokenServices.setAccessTokenValiditySeconds(accessTokenTimeout);
+        defaultTokenServices.setRefreshTokenValiditySeconds(refreshTokenTimeout);
         defaultTokenServices.setTokenStore(tokenStore());
         defaultTokenServices.setTokenEnhancer(jwtTokenEnhancerChain());
 
@@ -52,6 +59,7 @@ public class JWTTokenStoreConfig {
 
     @Bean
     public TokenEnhancerChain jwtTokenEnhancerChain() {
+
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
 
         tokenEnhancerChain.setTokenEnhancers(

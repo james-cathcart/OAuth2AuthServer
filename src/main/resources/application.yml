@@ -14,3 +14,9 @@ logging:
 
 server:
   port: 8901
+
+token:
+  access:
+    timeout: 300
+  refresh:
+    timeout: 600
