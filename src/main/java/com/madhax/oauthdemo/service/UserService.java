@@ -5,11 +5,8 @@ import com.madhax.oauthdemo.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -36,16 +33,6 @@ public class UserService {
     public User getByEmail(String email) {
         log.debug("Get user by email: {}", email);
         return this.userRepository.findByEmail(email);
-    }
-
-    public User save(User user) {
-        log.debug("Saving user...");
-        return this.userRepository.save(user);
-    }
-
-    public void deleteById(Long id) {
-        log.debug("Deleting user with id: {}", id);
-        this.userRepository.deleteById(id);
     }
 
 }

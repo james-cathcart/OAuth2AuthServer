@@ -106,24 +106,4 @@ public class UserServiceTest {
         verify(userRepository, times(1)).findByEmail(anyString());
     }
 
-    @Test
-    public void shouldSaveUser() {
-
-        when(userRepository.save(any(User.class))).thenReturn(user1);
-
-        User savedUser = userService.save(user1);
-
-        assertEquals(USER_1_ID, savedUser.getId().longValue());
-        assertEquals(USER_1_EMAIL, savedUser.getEmail());
-
-        verify(userRepository, times(1)).save(any(User.class));
-    }
-
-    @Test
-    public void shouldDeleteUserById() {
-
-        userService.deleteById(1L);
-
-        verify(userRepository, times(1)).deleteById(anyLong());
-    }
 }

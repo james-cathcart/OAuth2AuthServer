@@ -17,6 +17,6 @@ server:
 
 token:
   access:
-    timeout: 300
+    timeout: 3600
   refresh:
-    timeout: 600
+    timeout: 7200

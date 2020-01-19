@@ -14,6 +14,8 @@ import java.util.Map;
 @RestController
 public class AuthController {
 
+    // TODO make test class
+
     private final Logger log = LoggerFactory.getLogger(AuthController.class);
 
     @RequestMapping(value = {AuthConstants.USER_ENDPOINT}, produces = "application/json")
