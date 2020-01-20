@@ -36,6 +36,13 @@ public class AuthController {
                 )
         );
 
+        // TODO remove this debug logging for security purposes?
+        log.debug(
+                "User Principal: {} | authorities list: {}",
+                user.getUserAuthentication().getPrincipal(),
+                user.getUserAuthentication().getAuthorities()
+        );
+
         return userInfo;
     }
 }
