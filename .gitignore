@@ -30,3 +30,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Docker artifacts ###
+/docker/*.zip
+/docker/**/*.jar
