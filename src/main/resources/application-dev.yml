@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://194.168.1.12:5432/authdb
+    username: postgres
+    password: devP@ss
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true

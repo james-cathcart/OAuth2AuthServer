@@ -1,13 +1,3 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/authdb
-    username: postgres
-    password: devP@ss
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    show-sql: true
-
 logging:
   level:
     com.madhax: debug
