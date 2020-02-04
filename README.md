@@ -6,7 +6,7 @@ This is an evolving project meant to provide a working example of Spring's Oauth
 There is a directory called _docker_ in the root of the project. In this directory are three files: a Dockerfile, postgres sql dump, and a database initialization script. These will be used to build a postgres image pre-polulated with our default test users (admin@fakemail.com, clerk@fakemail.com, user@fakemail.com).
 
 ## Build the Docker Image
-Navigate _docker_ directory and run this command:
+Navigate `docker/database` directory and run this command:
 
 ```
 docker build -t oauth-postgres .
@@ -18,7 +18,12 @@ docker run --name oauth-db -p 5432:5432 -e POSTGRES_PASSWORD=devP@ss -d oauth-po
 ```
 
 ## Run the Project
-Import the project into IntelliJ (or your IDE of choice). Now run the project. 
+Import the project into IntelliJ (or your IDE of choice). 
+
+### Add the ENCRYPT_KEY Environment Variable
+In IntelliJ, edit your run configuration and add an environment variable called ENCRYPT_KEY and give it a value. This value is an encryption/decryption key for Spring's Cloud Config server. Do not lose this key as you cannot decrypt the property values without it.
+
+Now, run the project. 
 
 ## Try it out with the Postman Collection
 
