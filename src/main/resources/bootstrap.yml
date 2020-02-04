@@ -3,4 +3,4 @@ spring:
     name: oauthserver
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://194.168.1.23:8888
