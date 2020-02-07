@@ -1,6 +1,6 @@
-# Spring OAuth2 Minimalist Demo
+# Spring OAuth2 Authentication Server
 
-This is an evolving project meant to provide a working example of Spring's Oauth2 implementation.
+This is an evolving project meant to provide an authentication server via Spring's Oauth2 implementation.
 
 # How To Run
 There is a directory called _docker_ in the root of the project. In this directory are three files: a Dockerfile, postgres sql dump, and a database initialization script. These will be used to build a postgres image pre-polulated with our default test users (admin@fakemail.com, clerk@fakemail.com, user@fakemail.com).
